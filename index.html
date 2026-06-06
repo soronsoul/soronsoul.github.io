@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>王帅 · 项目案例集</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","微软雅黑",-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.7}
+  .hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#2563eb 100%);color:#fff;padding:60px 0;text-align:center}
+  .hero h1{font-size:2.4em;margin-bottom:8px;letter-spacing:2px}
+  .hero .sub{font-size:1.1em;opacity:.85;margin-bottom:20px}
+  .hero .tags{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .hero .tag{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:6px 18px;border-radius:20px;font-size:.9em}
+  .container{max-width:1140px;margin:0 auto;padding:0 20px}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:-30px auto 40px;position:relative;z-index:1}
+  .stat-card{background:#fff;border-radius:12px;padding:24px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+  .stat-card .num{font-size:2em;font-weight:700;color:#2563eb}
+  .stat-card .label{color:#666;font-size:.9em;margin-top:4px}
+
+  .section{margin:40px 0}
+  .section-title{font-size:1.3em;font-weight:700;padding:12px 20px;border-radius:10px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+  .s-iot{background:#eff6ff;color:#1e40af;border-left:4px solid #2563eb}
+  .s-erp{background:#f0fdf4;color:#166534;border-left:4px solid #16a34a}
+  .s-early{background:#fefce8;color:#854d0e;border-left:4px solid #eab308}
+  .s-sales{background:#fef2f2;color:#991b1b;border-left:4px solid #ef4444}
+
+  /* 重点项目大卡片 */
+  .highlight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:20px}
+  .h-card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s}
+  .h-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+  .h-card .h-client{font-size:1.3em;font-weight:700;color:#1e3a5f}
+  .h-card .h-badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.75em;font-weight:700;margin-left:8px;vertical-align:middle}
+  .badge-key{background:#fef2f2;color:#dc2626}.badge-iot{background:#eff6ff;color:#2563eb}.badge-erp{background:#f0fdf4;color:#16a34a}
+  .h-card .h-meta{font-size:.85em;color:#888;margin:6px 0 12px}
+  .h-card .h-desc{font-size:.92em;color:#555;line-height:1.8;margin-bottom:12px}
+  .h-card .h-modules{display:flex;flex-wrap:wrap;gap:5px}
+  .h-card .h-modules span{background:#f8fafc;border:1px solid #e2e8f0;padding:3px 10px;border-radius:4px;font-size:.78em;color:#555}
+
+  /* IoT 三列 */
+  .iot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px}
+  .iot-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid #2563eb;transition:transform .2s}
+  .iot-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+  .iot-card .client{font-size:1.1em;font-weight:700;color:#1e3a5f}
+  .iot-card .project{font-size:1em;color:#2563eb;font-weight:600;margin:4px 0 10px}
+  .iot-card .meta{font-size:.82em;color:#888;margin-bottom:10px}
+  .iot-card .desc{font-size:.9em;color:#555;line-height:1.8;margin-bottom:10px}
+  .iot-card .mods{display:flex;flex-wrap:wrap;gap:4px}
+  .iot-card .mods span{background:#eff6ff;color:#1e40af;padding:2px 9px;border-radius:4px;font-size:.76em}
+
+  /* ERP 其他项目 */
+  .erp-item{background:#fff;border-radius:12px;padding:18px 22px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:16px}
+  .erp-item .ei-icon{font-size:1.6em;min-width:44px;text-align:center}
+  .erp-item .ei-content{flex:1}
+  .erp-item .ei-title{font-weight:700;color:#166534;margin-bottom:3px}
+  .erp-item .ei-meta{font-size:.82em;color:#888;margin-bottom:4px}
+  .erp-item .ei-desc{font-size:.9em;color:#555;line-height:1.7}
+  .erp-item .ei-scope{margin-top:6px;display:flex;flex-wrap:wrap;gap:3px}
+  .erp-item .ei-scope span{background:#f0fdf4;color:#166534;padding:2px 9px;border-radius:4px;font-size:.78em}
+
+  /* 售前/销售业绩 */
+  .sales-card{background:#fff;border-radius:12px;padding:22px 26px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.04);border-left:4px solid #ef4444}
+  .sales-card h4{color:#991b1b;margin-bottom:4px}
+  .sales-card .sales-meta{font-size:.82em;color:#888;margin-bottom:6px}
+  .sales-card .sales-desc{font-size:.9em;color:#555;line-height:1.7}
+
+  /* 早期 */
+  .early-card{background:#fff;border-radius:12px;padding:22px 26px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.04);border-top:4px solid #eab308}
+  .early-card h4{color:#854d0e;margin-bottom:3px}
+  .early-card .early-meta{font-size:.82em;color:#888;margin-bottom:5px}
+  .early-card .early-desc{font-size:.9em;color:#555;line-height:1.8}
+  .early-card .early-scope{margin-top:6px;display:flex;flex-wrap:wrap;gap:3px}
+  .early-card .early-scope span{background:#fefce8;color:#854d0e;padding:2px 9px;border-radius:4px;font-size:.78em}
+
+  /* 图 */
+  .diagram{background:#fff;border-radius:12px;padding:20px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.04);text-align:center;overflow-x:auto}
+  .diagram h4{color:#1e3a5f;margin-bottom:12px}
+
+  .footer{text-align:center;padding:40px 0;color:#999;font-size:.85em}
+
+  @media(max-width:768px){
+    .hero h1{font-size:1.6em}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .highlight-grid,.iot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>王帅 · 项目案例集</h1>
+  <div class="sub">项目经理 | 2008 — 2026  |  18年项目经验  |  50+ 交付项目</div>
+  <div class="tags">
+    <span class="tag">项目管理</span><span class="tag">工业物联网IIoT</span><span class="tag">ERP实施交付</span>
+    <span class="tag">政务信息化</span><span class="tag">零售行业</span><span class="tag">售前方案</span>
+    <span class="tag">蓝图设计</span><span class="tag">客户运营</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="stats">
+  <div class="stat-card"><div class="num">18</div><div class="label">年项目管理经验</div></div>
+  <div class="stat-card"><div class="num">25+</div><div class="label">服务企业与政府客户</div></div>
+  <div class="stat-card"><div class="num">50+</div><div class="label">交付项目数量</div></div>
+  <div class="stat-card"><div class="num">95%+</div><div class="label">客户续约率</div></div>
+</div>
+
+<!-- ========== 一、工业物联网 ========== -->
+<div class="section">
+  <div class="section-title s-iot"><span style="font-size:1.5em">🏭</span> 工业物联网项目管理（2024 — 2026）<span style="font-size:.8em;font-weight:400;color:#666;margin-left:8px">核心转型方向</span></div>
+
+  <div class="iot-grid">
+    <div class="iot-card">
+      <div class="client">沈鼓集团 · 核电</div>
+      <div class="project">核电项目管理 PMS 系统</div>
+      <div class="meta">📅 2024-2026 | IIoT工业互联网平台 | 核电制造业</div>
+      <div class="desc">
+        面向核电设备制造全生命周期的<b>项目管理系统</b>。负责需求调研→蓝图设计→系统测试→用户培训→上线验收的完整交付闭环。系统覆盖启动管理、进度管控、质量/风险管理、技术管理（对外提资、技术进度、铸锻件/配套件预提）、采购进度、生产进度、发运计划（箱单/物料）等业务模块，为核电项目提供端到端的数字化管控能力。
+      </div>
+      <div class="mods"><span>蓝图设计方案</span><span>需求说明书</span><span>测试计划</span><span>测试报告</span><span>上线计划</span><span>用户培训记录</span></div>
+    </div>
+    <div class="iot-card">
+      <div class="client">中国通用机械工业协会</div>
+      <div class="project">行业数据统计管理平台</div>
+      <div class="meta">📅 2024-2025 | 云平台 | 国家级行业协会</div>
+      <div class="desc">
+        为国家级行业协会建设的<b>数据统计云平台</b>。涵盖协会管理、会员企业管理、数据填报与审核、海关数据采集分析、数据可视化等模块。采用<b>中台架构</b>，支持业务流程自动化与数据开放共享，作为工业互联网平台的技术骨架。客户为沈鼓集团旗下研究所。
+      </div>
+      <div class="mods"><span>建设方案V1.0</span><span>建设方案V2.0</span><span>上线报告</span></div>
+    </div>
+    <div class="iot-card">
+      <div class="client">客户中心模块</div>
+      <div class="project">IIoT 客户中心系统</div>
+      <div class="meta">📅 2024-2026 | IIoT工业互联网平台</div>
+      <div class="desc">
+        IIoT平台核心模块<b>蓝图设计→详细方案→功能复核→上线交付</b>。制定详细设计方案、功能复核报告、上线计划，承载平台客户业务数据管理的核心功能，是平台整体架构的关键组成部分。
+      </div>
+      <div class="mods"><span>蓝图设计方案</span><span>详情设计方案</span><span>功能复核报告</span><span>上线计划</span></div>
+    </div>
+  </div>
+
+  <!-- IIoT 系统关系图 -->
+  <div class="diagram">
+    <h4>📐 IIoT 平台系统架构与项目关系</h4>
+    <svg viewBox="0 0 1000 320" width="1000" height="320">
+      <!-- 顶层：行业平台 -->
+      <rect x="300" y="10" width="400" height="60" rx="10" fill="#1e40af"/><text x="500" y="42" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">🏛️ 行业协会平台层 — 中通协数据统计平台</text><text x="500" y="60" text-anchor="middle" fill="#bfdbfe" font-size="11">会员管理 · 数据采集 · 海关分析 · 数据可视化</text>
+      <!-- 中层：PMS 和 客户中心 -->
+      <line x1="450" y1="70" x2="300" y2="110" stroke="#555" stroke-width="1.5"/><line x1="550" y1="70" x2="700" y2="110" stroke="#555" stroke-width="1.5"/>
+      <rect x="150" y="110" width="300" height="80" rx="10" fill="#2563eb"/><text x="300" y="140" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">⚙️ 核电项目管理 PMS</text><text x="300" y="158" text-anchor="middle" fill="#bfdbfe" font-size="10">启动 · 进度 · 质量 · 风险 · 技术 · 采购 · 生产 · 发运</text><text x="300" y="176" text-anchor="middle" fill="#93c5fd" font-size="10">沈鼓集团核电泵业</text>
+      <rect x="550" y="110" width="280" height="80" rx="10" fill="#3b82f6"/><text x="690" y="140" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">👥 客户中心系统</text><text x="690" y="158" text-anchor="middle" fill="#bfdbfe" font-size="10">客户数据管理 · 业务承载</text><text x="690" y="176" text-anchor="middle" fill="#93c5fd" font-size="10">IIoT平台核心模块</text>
+      <!-- 底层 -->
+      <line x1="300" y1="190" x2="250" y2="240"/><line x1="300" y1="190" x2="500" y2="240"/><line x1="690" y1="190" x2="750" y2="240"/>
+      <rect x="100" y="240" width="300" height="60" rx="8" fill="#7c3aed"/><text x="250" y="267" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📋 项目交付方法论</text><text x="250" y="288" text-anchor="middle" fill="#ddd6fe" font-size="10">需求调研→方案编制→蓝图设计→实施→测试→上线</text>
+      <rect x="450" y="240" width="280" height="60" rx="8" fill="#16a34a"/><text x="590" y="267" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📊 项目管控体系</text><text x="590" y="288" text-anchor="middle" fill="#dcfce7" font-size="10">进度管控 · 质量保障 · 风险管理 · 客户培训</text>
+      <rect x="770" y="240" width="200" height="60" rx="8" fill="#f59e0b"/><text x="870" y="267" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🔗 开放共享</text><text x="870" y="288" text-anchor="middle" fill="#fef3c7" font-size="10">数据开放 · 工业互联网骨架</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ========== 二、ERP 重点项目 ========== -->
+<div class="section">
+  <div class="section-title s-erp"><span style="font-size:1.5em">📊</span> ERP实施核心项目（2012 — 2023）<span style="font-size:.8em;font-weight:400;color:#666;margin-left:8px">四大标杆客户 / 多类型系统交付</span></div>
+
+  <!-- 新世界 -->
+  <div class="h-card"><div class="h-client">新世界中国地产 <span class="h-badge badge-key">🔑 标杆客户</span></div>
+    <div class="h-meta">📅 2014 — 2016 | 香港上市企业 | 连续3年续约 | 项目经理：徐达（明源）</div>
+    <div class="h-desc">
+      负责集团企业<b>销售CRM系统、会员管理系统、物业云客/云服务系统</b>三大板块的全流程交付。从高层访谈、业务调研、现状分析入手，输出签字版业务解决方案。<br><br>
+      <b>销售CRM：</b>65页方案覆盖16条业务流程（项目准备→价格控制→折扣审批→销售计划→房源销控→营销费效→客户接访→签约→更名换房退房→开盘认购→报表审批），引入<b>高层管理决策树</b>模型。<br>
+      <b>会员系统（新中会）：</b>含二次开发交付，覆盖卡号管理、入会、信息、活动、积分（购房/活动/消费）全链路。<br>
+      <b>物业云客：</b>微楼书产品方案，推动从传统物业向数字化会员运营转型。
+    </div>
+    <div class="h-modules"><span>业务解决方案(签字版)</span><span>16条业务流程</span><span>二次开发验收</span><span>系统验收报告</span><span>会员系统方案V2.0</span><span>云客云服务宣讲</span><span>微楼书方案</span><span>高层决策树</span></div>
+  </div>
+  <br>
+
+  <!-- 方大 -->
+  <div class="h-card"><div class="h-client">方大地产 <span class="h-badge badge-key">🔑 标杆客户</span></div>
+    <div class="h-meta">📅 2020 — 2025 | 辽宁方大集团 | 多城市：沈阳·达州·南昌·抚顺 | 连续6年续约</div>
+    <div class="h-desc">
+      负责方大集团多城市、多项目的<b>云客智慧案场、渠道风控、人脸识别、佣金代支付、全民营销、物业系统</b>等全系列产品实施与持续运营。<br><br>
+      <b>智慧案场：</b>长白一品、世纪城、沈抚白沙岛等多个项目，涵盖参数配置、客户归属判定、移动销售、渠道管家。<br>
+      <b>渠道风控+人脸识别：</b>含技术标书、商务标书、独家著作权证明、风控资质全套投标文件。<br>
+      <b>佣金代支付：</b>全民经纪人佣金发放流程设计（含Visio流程图），对接达州方大世纪城。<br>
+      <b>物业系统：</b>完成调研→方案→初始化全流程，模板覆盖三亚/兰州/南昌/抚顺/沈阳/湖口6城市。<br>
+      <b>持续运营：</b>2020-2025连续6年合同续签，从首年合作扩展到后续年度持续增购。
+    </div>
+    <div class="h-modules"><span>智慧案场方案</span><span>渠道风控系统</span><span>人脸识别投标</span><span>佣金代支付流程</span><span>全民营销</span><span>物业整体方案</span><span>6城市模板</span><span>连续6年续约</span><span>技术标书</span><span>商务标书</span><span>验收报告</span></div>
+  </div>
+  <br>
+
+  <!-- 汇置 -->
+  <div class="h-card"><div class="h-client">汇置集团 <span class="h-badge badge-key">🔑 标杆客户</span></div>
+    <div class="h-meta">📅 2012 — 2023 | 多项目：公园city·山湖·尚都·尚岛·尚郡·沈北 | 跨越11年持续服务</div>
+    <div class="h-desc">
+      负责汇置集团<b>成本ERP→云客智能化→渠道管理→人脸识别→AI云店→企微功能</b>跨越11年的持续交付。<br><br>
+      <b>成本管理系统（2012-2014）：</b>ERP业务解决方案V1.8、应用提升计划、操作规范指引、项目验收。<br>
+      <b>云客系统（2019-2023）：</b>公园city、山湖等多项目应用情况汇报，系统明细管理。<br>
+      <b>持续增购：</b>渠道管理方案、沈北人脸识别计划、AI云店增购、渠道风控设备增购、企微功能对接。客户关系深度经营，从单一系统扩展到全系列产品覆盖。
+    </div>
+    <div class="h-modules"><span>成本ERP方案V1.8</span><span>应用提升计划</span><span>操作规范指引</span><span>云客系统方案</span><span>渠道管理</span><span>人脸识别实施</span><span>AI云店方案</span><span>企微功能</span><span>持续增购</span><span>11年客户关系</span></div>
+  </div>
+  <br>
+
+  <!-- 东软 -->
+  <div class="h-card"><div class="h-client">东软集团 <span class="h-badge badge-key">🔑 标杆客户</span></div>
+    <div class="h-meta">📅 2018 — 2019 | 上市企业 | 解决方案型交付</div>
+    <div class="h-desc">
+      负责面向东软集团的<b>成本管理、计划管理、采购招标三大解决方案</b>的编制与交付。<br><br>
+      输出<b>成本解决方案V1.0、计划解决方案V1.0、采购招标解决方案V1.0</b>三份完整方案文档，并完成售前宣讲。将行业最佳实践与东软实际业务场景结合，输出可直接落地的实施方案。
+    </div>
+    <div class="h-modules"><span>成本解决方案V1.0</span><span>计划解决方案V1.0</span><span>采购招标方案V1.0</span><span>售前宣讲PPT</span><span>启动会</span></div>
+  </div>
+</div>
+
+<!-- ========== 三、其他ERP客户 ========== -->
+<div class="section">
+  <div style="font-weight:700;font-size:1.05em;color:#166534;margin-bottom:12px">📋 其他ERP实施客户</div>
+
+  <div class="erp-item"><div class="ei-icon">🏷️</div><div class="ei-content">
+    <div class="ei-title">在线开盘 / 云选房 — 保利 · 奥园 · 郡源 · 盘锦鼎龙 · 中金</div>
+    <div class="ei-meta">📅 2017-2021 | 开盘方案→流程设计→培训→现场执行</div>
+    <div class="ei-desc">主导多家企业在线业务系统实施，覆盖在线选车位、手机选房、在线认购等场景，单场并发用户可达数千人。</div>
+    <div class="ei-scope"><span>选车位方案</span><span>手机选房流程</span><span>开盘执行方案</span><span>开盘培训</span><span>高并发保障</span></div>
+  </div></div>
+
+  <div class="erp-item"><div class="ei-icon">📱</div><div class="ei-content">
+    <div class="ei-title">渠道直销管理 — 保利地产</div>
+    <div class="ei-meta">📅 2017-2018 | 移动端APP + PC后台 | GPS考勤</div>
+    <div class="ei-desc">移动化管理系统实施。涵盖手机端GPS考勤打卡、客户报备、团队任务管理、PC端考勤/报备统计。</div>
+  </div></div>
+
+  <div class="erp-item"><div class="ei-icon">📣</div><div class="ei-content">
+    <div class="ei-title">全民营销运营 — 招商蛇口</div>
+    <div class="ei-meta">📅 2016 | 互联网营销运营方案</div>
+    <div class="ei-desc">运营方案覆盖经纪人审核、推荐客户管理、佣金发放、防截客时间机制、客户保护期、内场外场管理等完整经纪人运营体系设计。</div>
+  </div></div>
+
+  <div class="erp-item"><div class="ei-icon">🏘️</div><div class="ei-content">
+    <div class="ei-title">智慧案场 — 百益龙 · 富禹 · 港晟 · 首创 · 九州 · 京都城 等</div>
+    <div class="ei-meta">📅 2013-2025 | 持续12年 | 工勘→方案→实施→验收→续约</div>
+    <div class="ei-desc">负责十余家中小型企业客户的智慧案场系统交付。涵盖工勘方案、参数配置、流程管理、验收报告等全流程。客户续约率>95%，港晟从2013年持续服务至2023年（10年）。</div>
+    <div class="ei-scope"><span>工勘方案</span><span>智慧案场方案</span><span>云客方案</span><span>合同管理</span><span>验收报告</span><span>巡检汇报</span><span>10年+客户关系</span></div>
+  </div></div>
+</div>
+
+<!-- ========== 四、售前与销售业绩 ========== -->
+<div class="section">
+  <div class="section-title s-sales"><span style="font-size:1.5em">💼</span> 售前方案质量 &amp; 客户经营成果</div>
+
+  <div class="sales-card">
+    <h4>🎯 售前方案与投标能力</h4>
+    <div class="sales-meta">支撑 50+ 项目签约的关键能力</div>
+    <div class="sales-desc">
+      <b>完整投标经验：</b>方大世纪城人脸风控系统——独立完成技术标书、商务标书，含独家著作权证明、风控资质全套文件；参与政府采购及企业采购招标工作（早期政务经验）。<br>
+      <b>方案宣讲：</b>面向中铁置业、京都城、东软等客户高层进行整体方案宣讲与功能演示，从技术方案到商务方案全流程主导。<br>
+      <b>方案体系：</b>独立编制百益龙、富禹、方大、汇置等多个客户的产品方案，涵盖ERP、云客、渠道风控、人脸识别等多产品线。
+    </div>
+  </div>
+
+  <div class="sales-card">
+    <h4>📈 客户经营与续约业绩</h4>
+    <div class="sales-meta">长期客户关系管理与深度经营</div>
+    <div class="sales-desc">
+      <b>续约率 >95%：</b>所有持续服务客户均实现年度续约，无一流失。<br>
+      <b>客户深度经营：</b>汇置集团从成本ERP起步，逐步扩展到云客、渠道管理、人脸识别、AI云店、企微功能——从单一系统到全系列覆盖，11年持续增购。<br>
+      <b>方大地产：</b>从首年云客合同，扩展到渠道风控、人脸识别、佣金代支付、物业系统多产品线，6年持续增购，覆盖沈阳/达州/南昌/抚顺4城市。<br>
+      <b>港晟地产：</b>从2013年售楼系统实施起步，持续服务至2023年（10年），每年续约不停。<br>
+      <b>年度客户盘点：</b>2018-2023年每年编制客户盘点表，系统化管理客户续约与增购机会。
+    </div>
+  </div>
+
+  <div class="sales-card">
+    <h4>📊 年度销售节奏（以2023年为例）</h4>
+    <div class="sales-meta">从客户经营到合同落地的完整闭环</div>
+    <div class="sales-desc">
+      2月：方大佣金代支付合同 · 九州渠道风控 · 汇置风控设备增购 · 长白一品续签<br>
+      3月：首创合同结束与交接 · 郡源渠道管家增购 · 汇置3项目续签+AI云店增购 · 新湖续签<br>
+      4月：方大世纪城旺小宝 · 汇置商业云客沟通 · 九州合同 · 嘉城回款<br>
+      5-6月：VR考试 · 方大工牌 · 达州渠道管家 · 格林宋政 · 抚顺盛丰 · 嘉禾汇报<br>
+      7-9月：江山赋工勘 · 世纪嘉德上线 · 宏运 · 香溢售前 · 富禹合同确认 · 辽阳VR签约<br>
+      10-12月：富禹温泉小镇 · 抚顺天茂 · 新湖 · 鑫丰 · 富禹付款 · 长白营销总对接
+    </div>
+  </div>
+</div>
+
+
+<!-- ========== 四、核心能力 ========== -->
+<div class="section">
+  <div class="section-title s-sales"><span style="font-size:1.5em">💡</span> 售前能力 &amp; 方案宣讲</div>
+
+  <div class="sales-card">
+    <h4>🎤 方案宣讲与客户沟通</h4>
+    <div class="sales-desc">
+      <b>高层方案宣讲：</b>面向中铁置业、京都城、东软、亚泰地产等客户高层，独立完成整体解决方案的宣讲与现场功能演示。从客户痛点到方案价值，实现技术与业务的贯通讲解。<br>
+      <b>项目启动会：</b>主导数十场大型项目启动会的策划与组织，协调客户方、实施方、产品方等多方资源，制定项目推广计划与实施方案。<br>
+      <b>产品演示：</b>面向进销存行业、餐饮行业、地产行业客户进行产品功能演示，引导客户需求确认与方案认可。
+    </div>
+  </div>
+
+  <div class="sales-card">
+    <h4>📝 售前方案与投标能力</h4>
+    <div class="sales-desc">
+      <b>投标经验：</b>独立完成方大世纪城人脸风控系统技术标书、商务标书编制，含独家著作权证明、风控资质全套文件。参与辽宁省政府采购及企业采购招标。<br>
+      <b>方案编制：</b>独立完成百益龙、富禹、方大、汇置等多个客户的产品方案，涵盖ERP、云客、渠道风控、人脸识别等多产品线。<br>
+      <b>报价与合同：</b>主导客户报价方案制定与商务合同谈判，涵盖云客SAAS合同、ERP实施合同、硬件采购合同等多种合同类型。
+    </div>
+  </div>
+
+  <div class="sales-card">
+    <h4>📊 售前到交付的完整链条</h4>
+    <div class="sales-desc">
+      具备从<b>客户挖掘→需求调研→方案宣讲→报价投标→合同签署→实施交付→验收上线→持续运营</b>的全链条闭环能力。每一个环节均有实际项目案例支撑。
+    </div>
+  </div>
+</div>
+
+<!-- ========== 管理能力 ========== -->
+<div class="section">
+  <div class="section-title s-erp"><span style="font-size:1.5em">📊</span> 管理能力</div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:20px">
+    <div class="h-card">
+      <div class="h-client" style="font-size:1.1em">📋 项目管理</div>
+      <div class="h-desc" style="margin-top:10px">
+        负责 50+ 项目的全生命周期管理。涵盖进度管控、质量保障、风险管理、资源调配、客户期望管理等核心领域。熟练运用项目启动→蓝图设计→实施交付→测试验收→上线的标准化方法论。单个项目团队规模 5-20 人，同时管理多个并行项目。
+      </div>
+    </div>
+    <div class="h-card">
+      <div class="h-client" style="font-size:1.1em">🏢 部门管理</div>
+      <div class="h-desc" style="margin-top:10px">
+        具备市场部门管理与考核经验。负责团队年度预算编制、销售目标分解、绩效考核设计。统筹区域客户资源分配，协调跨部门协作（产品、技术、实施、售后）。编制年度个人总结与部门述职报告，推动团队能力提升。
+      </div>
+    </div>
+    <div class="h-card">
+      <div class="h-client" style="font-size:1.1em">👥 人员管理</div>
+      <div class="h-desc" style="margin-top:10px">
+        负责团队成员的任务分配、进度跟踪与能力培养。具备代理商技术对接与培训经验，指导数十家中小企业客户完成系统上线。推动客户培训体系建设，编制操作手册、考核试题、巡检报告等培训材料。
+      </div>
+    </div>
+    <div class="h-card">
+      <div class="h-client" style="font-size:1.1em">📌 事务管理</div>
+      <div class="h-desc" style="margin-top:10px">
+        擅长多任务并行处理与优先级排序。每年编制客户盘点表，系统化管理 20+ 客户的续约、巡检、增购、问题解决等事务。具备政府采购招投标流程管理经验，以及合同审核、法务对接、回款跟踪等商务事务管控能力。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 产品结构图 ========== -->
+<div class="diagram">
+  <h4>📐 IIoT 工业互联网平台 — 产品结构总览</h4>
+  <svg viewBox="0 0 1000 360" width="1000" height="360">
+    <text x="500" y="18" text-anchor="middle" fill="#666" font-size="11">负责模块：核电PMS · 中通协数据平台 · 客户中心</text>
+    <!-- 顶层 -->
+    <rect x="200" y="30" width="600" height="55" rx="10" fill="#1e40af"/><text x="500" y="56" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">IIoT 工业互联网平台（沈鼓集团）</text><text x="500" y="74" text-anchor="middle" fill="#bfdbfe" font-size="10">核电泵业 · 通用机械协会 · 多业务模块</text>
+    <!-- 连接线 -->
+    <line x1="350" y1="85" x2="250" y2="130" stroke="#888" stroke-width="1.2"/>
+    <line x1="500" y1="85" x2="500" y2="130" stroke="#888" stroke-width="1.2"/>
+    <line x1="650" y1="85" x2="750" y2="130" stroke="#888" stroke-width="1.2"/>
+    <!-- 中层 -->
+    <rect x="100" y="130" width="300" height="75" rx="8" fill="#2563eb"/><text x="250" y="156" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">⚙️ 核电项目管理 PMS</text><text x="250" y="174" text-anchor="middle" fill="#bfdbfe" font-size="10">启动 · 进度 · 质量 · 风险 · 技术 · 采购 · 生产 · 发运</text><text x="250" y="192" text-anchor="middle" fill="#93c5fd" font-size="9">沈鼓核电泵业有限公司</text>
+    <rect x="400" y="130" width="200" height="75" rx="8" fill="#3b82f6"/><text x="500" y="156" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">🏛️ 中通协数据平台</text><text x="500" y="174" text-anchor="middle" fill="#bfdbfe" font-size="10">协会管理 · 数据采集 · 海关分析</text><text x="500" y="192" text-anchor="middle" fill="#93c5fd" font-size="9">中国通用机械工业协会</text>
+    <rect x="600" y="130" width="300" height="75" rx="8" fill="#7c3aed"/><text x="750" y="156" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">👥 客户中心 · 其他模块</text><text x="750" y="174" text-anchor="middle" fill="#ddd6fe" font-size="10">客户数据管理 · 业务承载 · 其他子系统</text>
+    <!-- 连接线 -->
+    <line x1="250" y1="205" x2="250" y2="245"/><line x1="500" y1="205" x2="500" y2="245"/><line x1="750" y1="205" x2="750" y2="245"/>
+    <!-- 底层 -->
+    <rect x="100" y="245" width="800" height="65" rx="8" fill="#16a34a"/><text x="500" y="272" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">🔧 项目交付支撑体系</text>
+    <text x="500" y="296" text-anchor="middle" fill="#dcfce7" font-size="10">需求调研 · 蓝图设计 · 系统测试 · 用户培训 · 上线验收 · 持续运营  |  全流程 PM 交付</text>
+  </svg>
+</div>
+
+<div class="diagram">
+  <h4>📐 ERP产品体系 — 功能模块结构</h4>
+  <svg viewBox="0 0 1000 300" width="1000" height="300">
+    <text x="500" y="18" text-anchor="middle" fill="#666" font-size="11">10年+ 实施经验覆盖的核心产品线</text>
+    <!-- 核心ERP -->
+    <rect x="50" y="35" width="900" height="48" rx="8" fill="#1e3a5f"/><text x="500" y="65" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">📊 核心ERP系统</text>
+    <line x1="200" y1="83" x2="130" y2="115"/><line x1="380" y1="83" x2="340" y2="115"/><line x1="560" y1="83" x2="560" y2="115"/><line x1="740" y1="83" x2="800" y2="115"/>
+    <rect x="20" y="115" width="220" height="65" rx="7" fill="#2563eb"/><text x="130" y="143" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">💰 成本管理</text><text x="130" y="165" text-anchor="middle" fill="#bfdbfe" font-size="9">汇置 · 东软</text>
+    <rect x="250" y="115" width="220" height="65" rx="7" fill="#3b82f6"/><text x="360" y="143" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📋 计划 & 采购招标</text><text x="360" y="165" text-anchor="middle" fill="#bfdbfe" font-size="9">东软 · 招商</text>
+    <rect x="480" y="115" width="220" height="65" rx="7" fill="#16a34a"/><text x="590" y="143" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📦 销售CRM</text><text x="590" y="165" text-anchor="middle" fill="#dcfce7" font-size="9">新世界 · 汇置 · 亚泰</text>
+    <rect x="710" y="115" width="220" height="65" rx="7" fill="#7c3aed"/><text x="820" y="143" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">👥 会员管理</text><text x="820" y="165" text-anchor="middle" fill="#ddd6fe" font-size="9">新世界（新中会）</text>
+    <!-- 第二行产品 -->
+    <line x1="130" y1="180" x2="130" y2="210"/><line x1="360" y1="180" x2="360" y2="210"/><line x1="590" y1="180" x2="590" y2="210"/><line x1="820" y1="180" x2="820" y2="210"/>
+    <rect x="20" y="210" width="220" height="65" rx="7" fill="#f59e0b"/><text x="130" y="238" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🏷️ 在线开盘 / 云选房</text><text x="130" y="260" text-anchor="middle" fill="#fef3c7" font-size="9">保利 · 奥园 · 郡源 · 鼎龙</text>
+    <rect x="250" y="210" width="220" height="65" rx="7" fill="#ef4444"/><text x="360" y="238" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🛡️ 渠道风控 · 人脸识别</text><text x="360" y="260" text-anchor="middle" fill="#fecaca" font-size="9">方大 · 九州 · 汇置</text>
+    <rect x="480" y="210" width="220" height="65" rx="7" fill="#ec4899"/><text x="590" y="238" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📣 全民营销 · 直销管理</text><text x="590" y="260" text-anchor="middle" fill="#fce7f3" font-size="9">招商 · 保利 · 方大</text>
+    <rect x="710" y="210" width="220" height="65" rx="7" fill="#14b8a6"/><text x="820" y="238" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🏘️ 物业 · 云客 · AI云店</text><text x="820" y="260" text-anchor="middle" fill="#ccfbf1" font-size="9">方大 · 新世界 · 汇置</text>
+  </svg>
+</div>
+
+<!-- ========== 政府信息化产品关系 ========== -->
+<div class="diagram">
+  <h4>📐 政府信息化 — 早期经历系统结构</h4>
+  <svg viewBox="0 0 1000 200" width="1000" height="200">
+    <rect x="250" y="15" width="500" height="50" rx="10" fill="#1e3a5f"/><text x="500" y="46" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">🏛️ 辽宁省工商行政管理局 · 信息化系统群</text>
+    <line x1="320" y1="65" x2="180" y2="110"/><line x1="420" y1="65" x2="380" y2="110"/><line x1="520" y1="65" x2="520" y2="110"/><line x1="620" y1="65" x2="660" y2="110"/><line x1="720" y1="65" x2="800" y2="110"/>
+    <rect x="60" y="110" width="240" height="65" rx="8" fill="#2563eb"/><text x="180" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🔴 红盾系统</text><text x="180" y="158" text-anchor="middle" fill="#bfdbfe" font-size="10">企业信用信息公示</text>
+    <rect x="310" y="110" width="180" height="65" rx="8" fill="#3b82f6"/><text x="400" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📋 工商业务系统</text><text x="400" y="158" text-anchor="middle" fill="#bfdbfe" font-size="10">企业登记·变更·注销</text>
+    <rect x="490" y="110" width="140" height="65" rx="8" fill="#7c3aed"/><text x="560" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📝 OA 系统</text><text x="560" y="158" text-anchor="middle" fill="#ddd6fe" font-size="10">办公自动化</text>
+    <rect x="630" y="110" width="180" height="65" rx="8" fill="#f59e0b"/><text x="720" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">🌐 网上年检系统</text><text x="720" y="158" text-anchor="middle" fill="#fef3c7" font-size="10">面向企业在线年检</text>
+    <rect x="820" y="110" width="130" height="65" rx="8" fill="#ef4444"/><text x="885" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">📊 其他配套</text><text x="885" y="158" text-anchor="middle" fill="#fecaca" font-size="10">配套子系统</text>
+  </svg>
+</div>
+
+<!-- ========== 五、早期经历 ========== -->
+<div class="section">
+  <div class="section-title s-early"><span style="font-size:1.5em">📋</span> 政府信息化 &amp; 零售行业（2008 — 2012）</div>
+
+  <div class="early-card">
+    <h4>🏛️ 政府信息化系统运维 — 辽宁省内各市工商行政管理局</h4>
+    <div class="early-meta">📅 2008-2011 | 政府客户 | 系统运维 + 采购招标</div>
+    <div class="early-desc">负责辽宁省内各市工商行政管理局的<b>红盾系统、OA系统、工商业务系统、网上年检系统</b>等核心政务系统的维护升级、技术支持与用户培训。面向企业提供网上年检系统操作指导。负责与工商局合作企业业务对接，<b>参加政府采购及企业采购招标工作</b>。</div>
+    <div class="early-scope"><span>红盾系统</span><span>OA系统</span><span>工商业务系统</span><span>网上年检系统</span><span>政府采购招标</span><span>企业采购招标</span><span>系统维护升级</span><span>用户培训</span></div>
+  </div>
+
+  <div class="early-card">
+    <h4>🛒 零售行业项目实施 — 进销存 / 餐饮行业</h4>
+    <div class="early-meta">📅 2011-2012 | 中小企业客户 | 售前+实施+售后</div>
+    <div class="early-desc">负责进销存行业、餐饮行业客户的<b>软硬件一体化实施交付</b>，涵盖售前需求分析、产品演示、系统安装部署、操作培训到后期客服解决方案的全链条服务。同时负责代理商技术对接与问题解决，<b>独立负责数十家中小企业</b>项目全程交付。</div>
+    <div class="early-scope"><span>进销存系统</span><span>餐饮管理系统</span><span>软硬件实施</span><span>售前需求分析</span><span>产品演示</span><span>操作培训</span><span>客诉解决方案</span><span>代理商技术对接</span></div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">王帅 · 项目案例集 | 数据来源于项目原始文档 | 持续更新中</div>
+</body>
+</html>
